@@ -1,0 +1,58 @@
+name: GreenKeeper
+options:
+  bundleIdPrefix: games.schenktech
+  deploymentTarget:
+    iOS: "17.0"
+  xcodeVersion: "15.0"
+
+settings:
+  SWIFT_VERSION: 6.0
+
+targets:
+  GreenKeeper:
+    type: application
+    platform: iOS
+    deploymentTarget: "17.0"
+    sources:
+      - path: GreenKeeper
+        excludes:
+          - "*.storyboard"
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: games.schenktech.greenkeeper
+      INFOPLIST_FILE: GreenKeeper/Info.plist
+      SWIFT_VERSION: 6.0
+      TARGETED_DEVICE_FAMILY: "1,2"
+      CODE_SIGN_STYLE: Automatic
+      DEVELOPMENT_TEAM: S9SAABNC32
+      GENERATE_INFOPLIST_FILE: NO
+    dependencies:
+      - sdk: SwiftUI.framework
+      - sdk: SwiftData.framework
+      - sdk: StoreKit.framework
+    entitlements:
+      path: GreenKeeper/GreenKeeper.entitlements
+      properties: {}
+  GreenKeeperTests:
+    type: bundle.unit-test
+    platform: iOS
+    deploymentTarget: "17.0"
+    sources:
+      - path: GreenKeeperTests
+    settings:
+      SWIFT_VERSION: 6.0
+      PRODUCT_BUNDLE_IDENTIFIER: games.schenktech.greenkeeper.tests
+      GENERATE_INFOPLIST_FILE: YES
+    dependencies:
+      - target: GreenKeeper
+  GreenKeeperUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    deploymentTarget: "17.0"
+    sources:
+      - path: GreenKeeperUITests
+    settings:
+      SWIFT_VERSION: 6.0
+      PRODUCT_BUNDLE_IDENTIFIER: games.schenktech.greenkeeper.uitests
+      GENERATE_INFOPLIST_FILE: YES
+    dependencies:
+      - target: GreenKeeper
